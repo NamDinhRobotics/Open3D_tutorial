@@ -30,9 +30,32 @@ int main() {
 
   //create a voxel down sampling to pcd
   auto Vox_pcd = pcd.VoxelDownSample(0.05);
+  Vox_pcd->PaintUniformColor(Eigen::Vector3d(1, 0.706, 0));
+  //cluser the point cloud
+  auto cluster_pcd = Vox_pcd->ClusterDBSCAN(0.05, 2, true);
+
+  //plane segmentation, return a tuple of two point clouds
+  auto model = Vox_pcd->SegmentPlane(0.01, 3, 1000);
+  //get the first element of the tuple
+  auto model_pcd = std::get<0>(model);
+  //get the second element of the tuple
+  auto inlier_pcd = std::get<1>(model);
+  //print model_pcd coffecients
+  std::cout << "Model coefficients: " << model_pcd.transpose()<< std::endl;
+
+
+  //draw the share of cluster_pcd
+
+
+
+
   //draw original point cloud
   //new window
   open3d::visualization::DrawGeometries({Vox_pcd}, "Voxel Down Sample");
+
+  //print the size of the voxel down sampled point cloud
+  std::cout << "Voxel Down Sample contains " << Vox_pcd->points_.size()
+            << " points." << std::endl;
 
   //estimate vertex normals
   //downpcd.estimate_normals(
@@ -49,8 +72,14 @@ int main() {
   open3d::visualization::DrawGeometries({Vox_pcd}, "Voxel Down Sample with Normals",
                                         640,640,50,50, true);
 
+  //print the number of estimated normals
+  std::cout << "Point cloud contains " << Vox_pcd->normals_.size()
+            << " normals." << std::endl;
 
-
+  //print the first 10 normals vectors
+  for (int i = 0; i < 10; i++) {
+    std::cout << Vox_pcd->normals_[i].transpose() << std::endl;
+  }
 
   /*
   //draw the point cloud
