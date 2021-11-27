@@ -3,6 +3,7 @@ project(test_open3D)
 
 set(CMAKE_CXX_STANDARD 14)
 
+#this is your install directory of open3D
 find_package(Open3D HINTS /home/dinhnambkhn/open3d_install/lib/cmake)
 
 
