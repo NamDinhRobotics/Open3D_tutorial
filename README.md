@@ -1,2 +1,2 @@
-# test_open3D with Cmake
+# How to config cmake with open3D
 Test read an PCL with open3D
