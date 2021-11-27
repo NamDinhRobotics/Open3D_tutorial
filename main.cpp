@@ -28,6 +28,30 @@ int main() {
   //draw the point cloud
   open3d::visualization::DrawGeometries({pcd_ptr});
 
+  //create a voxel down sampling to pcd
+  auto Vox_pcd = pcd.VoxelDownSample(0.05);
+  //draw original point cloud
+  //new window
+  open3d::visualization::DrawGeometries({Vox_pcd}, "Voxel Down Sample");
+
+  //estimate vertex normals
+  //downpcd.estimate_normals(
+  //    search_param=o3d.geometry.KDTreeSearchParamHybrid(radius=0.1, max_nn=30))
+  //o3d.visualization.draw_geometries([downpcd],
+  //                                  zoom=0.3412,
+  //                                  front=[0.4257, -0.2125, -0.8795],
+  //                                  lookat=[2.6172, 2.0475, 1.532],
+  //                                  up=[-0.0694, -0.9768, 0.2024],
+  //                                  point_show_normal=True)
+  Vox_pcd->EstimateNormals(
+      open3d::geometry::KDTreeSearchParamHybrid(0.1, 30));
+  //draw the point cloud with normals
+  open3d::visualization::DrawGeometries({Vox_pcd}, "Voxel Down Sample with Normals",
+                                        640,640,50,50, true);
+
+
+
+
   /*
   //draw the point cloud
   auto sphere = open3d::geometry::TriangleMesh::CreateSphere(1.0);
