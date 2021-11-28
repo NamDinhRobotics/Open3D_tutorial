@@ -60,7 +60,7 @@ int main(){
     //draw point cloud with zoom property 0.5
     open3d::visualization::DrawGeometries({point_cloud});
 
-    //read color image
+    //read color image, change your path which is open3d source code
     std::string color_path2 = "/home/dinhnambkhn/Open3D/examples/test_data/RGBD/other_formats/SUN_color.jpg";
     std::string depth_path2 = "/home/dinhnambkhn/Open3D/examples/test_data/RGBD/other_formats/SUN_depth.png";
     //create image variable open3d
