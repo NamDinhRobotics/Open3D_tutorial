@@ -24,3 +24,6 @@ target_link_libraries(mesh Open3D::Open3D ${OpenCV_LIBRARIES})
 
 add_executable(Transformation Transformation.cpp)
 target_link_libraries(Transformation Open3D::Open3D ${OpenCV_LIBRARIES})
+
+add_executable(rgbd_image rgbd_image.cpp)
+target_link_libraries(rgbd_image Open3D::Open3D ${OpenCV_LIBRARIES})
