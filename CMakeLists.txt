@@ -6,10 +6,15 @@ set(CMAKE_CXX_STANDARD 14)
 #this is your install directory of open3D
 find_package(Open3D HINTS /home/dinhnambkhn/open3d_install/lib/cmake)
 
+find_package(OpenCV)
+include_directories(${OpenCV_INCLUDE_DIRS})
 
 if(NOT Open3D_FOUND)
     message(FATAL_ERROR "Open3D not found, please use -DCMAKE_INSTALL_PREFIX=open3d_install_dir")
 endif()
 
-add_executable(testopen3D main.cpp)
-target_link_libraries(testopen3D Open3D::Open3D)
+add_executable(testPCL test_PCL.cpp)
+target_link_libraries(testPCL Open3D::Open3D)
+
+add_executable(read_image read_image.cpp)
+target_link_libraries(read_image Open3D::Open3D ${OpenCV_LIBRARIES})
