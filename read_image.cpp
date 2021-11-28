@@ -18,6 +18,7 @@ int main(){
     } else {
         std::cout << "Image is not empty" << std::endl;
     }
+
     //create a share d pointer of image
     std::shared_ptr<open3d::geometry::Image> image_ptr = std::make_shared<open3d::geometry::Image>(image);
     //read image file opencv

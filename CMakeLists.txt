@@ -18,3 +18,9 @@ target_link_libraries(testPCL Open3D::Open3D)
 
 add_executable(read_image read_image.cpp)
 target_link_libraries(read_image Open3D::Open3D ${OpenCV_LIBRARIES})
+
+add_executable(mesh Mesh_test.cpp)
+target_link_libraries(mesh Open3D::Open3D ${OpenCV_LIBRARIES})
+
+add_executable(Transformation Transformation.cpp)
+target_link_libraries(Transformation Open3D::Open3D ${OpenCV_LIBRARIES})
