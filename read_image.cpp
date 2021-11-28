@@ -26,6 +26,10 @@ int main(){
     //convert to gray scale
     cv::Mat image_gray;
     cv::cvtColor(image_cv, image_gray, cv::COLOR_BGR2GRAY);
+    //show color image and gray image
+    cv::imshow("color image", image_cv);
+    cv::imshow("gray image", image_gray);
+    cv::waitKey(0);
 
     //draw the image_ptr
     open3d::visualization::DrawGeometries({image_ptr});
