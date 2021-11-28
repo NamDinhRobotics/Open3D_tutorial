@@ -18,6 +18,15 @@ int main(){
 
     //print number of points
     std::cout << "Number of points: " << pcd.points_.size() << std::endl;
+
+    //rotate point cloud
+    Eigen::Matrix3d rotation_matrix;
+    rotation_matrix << 1.0, 0.0, 0.0,
+                        0, -1, 0,
+                        0, 0, -1;
+
+    pcd_ptr->Rotate(rotation_matrix, Eigen::Vector3d(0, 0, 1));
+
     //draw point cloud
     open3d::visualization::DrawGeometries({pcd_ptr}, "Point Cloud");
 
