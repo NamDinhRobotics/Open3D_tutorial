@@ -10,7 +10,7 @@ int main() {
     //read_pinhole_camera_intrinsic
     open3d::camera::PinholeCameraIntrinsic pinhole_camera_intrinsic;
     open3d::io::ReadIJsonConvertibleFromJSON(camera_intrinsic_path, pinhole_camera_intrinsic);
-    //check if file is read or not
+    //check the intrinsic parameters
     std::cout << "Intrinsic: " << pinhole_camera_intrinsic.intrinsic_matrix_ << std::endl;
 
     //read source color image path
@@ -65,17 +65,17 @@ int main() {
                                                                                   odom_init,
                                                                                   open3d::pipelines::odometry::RGBDOdometryJacobianFromColorTerm(),
                                                                                   option);
-
-    //print the first element of the tuple
-    std::cout << "Transformation from color term: ok? " << std::get<0>(trans_color_term_info) << std::endl;
-    std::cout << "Transformation from color term:" << std::get<1>(trans_color_term_info) << std::endl;
-    std::cout << "INFORM from color term:" << std::get<2>(trans_color_term_info) << std::endl;
-
     //stop counting time
     auto stop = std::chrono::system_clock::now();
     //print time
     std::cout << "time for Transformation from color ms: " <<
-    std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count() <<std::endl;
+              std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count() <<std::endl;
+
+    //print the first element of the tuple
+    std::cout << "Transformation from color term: ok? " << std::get<0>(trans_color_term_info) << std::endl;
+    std::cout << "Transformation from color term:" << std::endl << std::get<1>(trans_color_term_info) << std::endl;
+    std::cout << "INFORM from color term:" << std::endl << std::get<2>(trans_color_term_info) << std::endl;
+
 
     //begin counting time
     auto start1 = std::chrono::system_clock::now();
@@ -89,17 +89,17 @@ int main() {
                                                                                    open3d::pipelines::odometry::RGBDOdometryJacobianFromColorTerm(),
                                                                                    option);
 
-
-    //print the first element of the tuple
-    std::cout << "Transformation from HYBRID term: ok? " << std::get<0>(trans_hybrid_term_info) << std::endl;
-    std::cout << "Transformation from HYBRID term:" << std::get<1>(trans_hybrid_term_info) << std::endl;
-    std::cout << "INFORM from HYBRID term:" << std::get<2>(trans_hybrid_term_info) << std::endl;
-
     //stop time counting
     auto stop1 = std::chrono::system_clock::now();
     //print time
     std::cout << "time for Transformation from color ms: " <<
               std::chrono::duration_cast<std::chrono::milliseconds>(stop1 - start1).count() <<std::endl;
+
+    //print the first element of the tuple
+    std::cout << "Transformation from HYBRID term: ok? " << std::get<0>(trans_hybrid_term_info) << std::endl;
+    std::cout << "Transformation from HYBRID term:" << std::endl<< std::get<1>(trans_hybrid_term_info) << std::endl;
+    std::cout << "INFORM from HYBRID term:" << std::endl << std::get<2>(trans_hybrid_term_info) << std::endl;
+
 
 
     return 0;
