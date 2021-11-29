@@ -27,3 +27,6 @@ target_link_libraries(Transformation Open3D::Open3D ${OpenCV_LIBRARIES})
 
 add_executable(rgbd_image rgbd_image.cpp)
 target_link_libraries(rgbd_image Open3D::Open3D ${OpenCV_LIBRARIES})
+
+add_executable(rgbd_odometry RGBD_odometry.cpp)
+target_link_libraries(rgbd_odometry Open3D::Open3D ${OpenCV_LIBRARIES})
