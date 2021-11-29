@@ -1,5 +1,6 @@
 //
 // Created by dinhnambkhn on 21. 11. 29..
+// http://www.open3d.org/docs/latest/tutorial/Basic/rgbd_odometry.html#Visualize-RGBD-image-pairs
 //
 #include <iostream>
 #include <open3d/Open3D.h>
@@ -76,13 +77,13 @@ int main() {
     //std::cout << "Transformation from color term:" << std::endl << std::get<1>(trans_color_term_info) << std::endl;
     //std::cout << "INFORM from color term:" << std::endl << std::get<2>(trans_color_term_info) << std::endl;
 
-    if(std::get<0>(trans_color_term_info))
-    {
+    if (std::get<0>(trans_color_term_info)) {
         //print Using RGB-D Odometry
-        std::cout <<"Using RGB-D Odometry " <<std::endl;
-        std::cout <<"Transformation: " << std::get<1>(trans_color_term_info)<< std::endl;
+        std::cout << "Using RGB-D Odometry " << std::endl;
+        std::cout << "Transformation: " << std::get<1>(trans_color_term_info) << std::endl;
         //create point cloud from rgbd_image
-        auto source_pcd_color_term = open3d::geometry::PointCloud::CreateFromRGBDImage(*source_rgbd, pinhole_camera_intrinsic);
+        auto source_pcd_color_term = open3d::geometry::PointCloud::CreateFromRGBDImage(*source_rgbd,
+                                                                                       pinhole_camera_intrinsic);
         source_pcd_color_term->Transform(std::get<1>(trans_color_term_info));
         //draw pcl
         Eigen::Vector3d lookat;
@@ -95,10 +96,8 @@ int main() {
         open3d::visualization::DrawGeometries({target_point_cloud, source_pcd_color_term},
                                               "Point Cloud", 640, 480, 50, 50, true, false, false,
                                               &lookat, &up, &front);
-    }
-    else
-    {
-        std::cout <<"Using RGB-D Odometry failed" <<std::endl;
+    } else {
+        std::cout << "Using RGB-D Odometry failed" << std::endl;
     }
 
 
@@ -124,13 +123,13 @@ int main() {
     std::cout << "Transformation from HYBRID term:" << std::endl << std::get<1>(trans_hybrid_term_info) << std::endl;
     std::cout << "INFORM from HYBRID term:" << std::endl << std::get<2>(trans_hybrid_term_info) << std::endl;
 
-    if(std::get<0>(trans_hybrid_term_info))
-    {
+    if (std::get<0>(trans_hybrid_term_info)) {
         //print Using RGB-D Odometry
-        std::cout <<"Using RGB-D Hybrid_term " <<std::endl;
-        std::cout <<"Transformation: " <<std::get<1>(trans_hybrid_term_info)<< std::endl;
+        std::cout << "Using RGB-D Hybrid_term " << std::endl;
+        std::cout << "Transformation: " << std::get<1>(trans_hybrid_term_info) << std::endl;
         //create point cloud from rgbd_image
-        auto source_pcd_hybrid_term = open3d::geometry::PointCloud::CreateFromRGBDImage(*source_rgbd, pinhole_camera_intrinsic);
+        auto source_pcd_hybrid_term = open3d::geometry::PointCloud::CreateFromRGBDImage(*source_rgbd,
+                                                                                        pinhole_camera_intrinsic);
         source_pcd_hybrid_term->Transform(std::get<1>(trans_hybrid_term_info));
         //draw pcl
         Eigen::Vector3d lookat;
@@ -147,23 +146,17 @@ int main() {
         open3d::visualization::DrawGeometries({target_point_cloud, source_pcd_hybrid_term},
                                               "Point Cloud", 640, 480, 50, 50, false, false, false,
                                               &lookat, &up, &front);
+    } else {
+        std::cout << "Using RGB-D Hybrid_term failed" << std::endl;
     }
-    else
-    {
-        std::cout <<"Using RGB-D Hybrid_term failed" <<std::endl;
-    }
-
-
-    // This code block calls two different RGBD odometry methods. The first one is from [Steinbrucker2011].
-    // It minimizes photo consistency of aligned images. The second one is from [Park2017].
-    // In addition to photo consistency, it implements constraint for geometry. Both functions run in similar speed,
-    // but [Park2017] is more accurate in our test on benchmark datasets and is thus the recommended method.
-    // Park, Q.-Y. Zhou, and V. Koltun, Colored Point Cloud Registration Revisited, ICCV, 2017.
-    // Steinbrucker, J. Sturm, and D. Cremers, Real-time visual odometry from dense RGB-D images, In ICCV Workshops, 2011.
-
-
-
 
     return 0;
 
 }
+// This code block calls two different RGBD odometry methods. The first one is from [Steinbrucker2011].
+// It minimizes photo consistency of aligned images. The second one is from [Park2017].
+// In addition to photo consistency, it implements constraint for geometry. Both functions run in similar speed,
+// but [Park2017] is more accurate in our test on benchmark datasets and is thus the recommended method.
+// Park, Q.-Y. Zhou, and V. Koltun, Colored Point Cloud Registration Revisited, ICCV, 2017.
+// Steinbrucker, J. Sturm, and D. Cremers, Real-time visual odometry from dense RGB-D images, In ICCV Workshops, 2011.
+
