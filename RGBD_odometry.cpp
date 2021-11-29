@@ -69,17 +69,41 @@ int main() {
     auto stop = std::chrono::system_clock::now();
     //print time
     std::cout << "time for Transformation from color ms: " <<
-              std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count() <<std::endl;
+              std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count() << std::endl;
 
     //print the first element of the tuple
-    std::cout << "Transformation from color term: ok? " << std::get<0>(trans_color_term_info) << std::endl;
-    std::cout << "Transformation from color term:" << std::endl << std::get<1>(trans_color_term_info) << std::endl;
-    std::cout << "INFORM from color term:" << std::endl << std::get<2>(trans_color_term_info) << std::endl;
+    //std::cout << "Transformation from color term: ok? " << std::get<0>(trans_color_term_info) << std::endl;
+    //std::cout << "Transformation from color term:" << std::endl << std::get<1>(trans_color_term_info) << std::endl;
+    //std::cout << "INFORM from color term:" << std::endl << std::get<2>(trans_color_term_info) << std::endl;
+
+    if(std::get<0>(trans_color_term_info))
+    {
+        //print Using RGB-D Odometry
+        std::cout <<"Using RGB-D Odometry " <<std::endl;
+        std::cout <<"Transformation: " << std::get<1>(trans_color_term_info)<< std::endl;
+        //create point cloud from rgbd_image
+        auto source_pcd_color_term = open3d::geometry::PointCloud::CreateFromRGBDImage(*source_rgbd, pinhole_camera_intrinsic);
+        source_pcd_color_term->Transform(std::get<1>(trans_color_term_info));
+        //draw pcl
+        Eigen::Vector3d lookat;
+        lookat << 0.0345, -0.0937, 1.8033;
+        Eigen::Vector3d up;
+        up << -0.0067, -0.9838, 0.1790;
+        Eigen::Vector3d front;
+        front << 0.0999, -0.1787, -0.9788;
+
+        open3d::visualization::DrawGeometries({target_point_cloud, source_pcd_color_term},
+                                              "Point Cloud", 640, 480, 50, 50, true, false, false,
+                                              &lookat, &up, &front);
+    }
+    else
+    {
+        std::cout <<"Using RGB-D Odometry failed" <<std::endl;
+    }
 
 
     //begin counting time
     auto start1 = std::chrono::system_clock::now();
-
 
 
     auto trans_hybrid_term_info = open3d::pipelines::odometry::ComputeRGBDOdometry(*source_rgbd,
@@ -93,12 +117,50 @@ int main() {
     auto stop1 = std::chrono::system_clock::now();
     //print time
     std::cout << "time for Transformation from color ms: " <<
-              std::chrono::duration_cast<std::chrono::milliseconds>(stop1 - start1).count() <<std::endl;
+              std::chrono::duration_cast<std::chrono::milliseconds>(stop1 - start1).count() << std::endl;
 
     //print the first element of the tuple
     std::cout << "Transformation from HYBRID term: ok? " << std::get<0>(trans_hybrid_term_info) << std::endl;
-    std::cout << "Transformation from HYBRID term:" << std::endl<< std::get<1>(trans_hybrid_term_info) << std::endl;
+    std::cout << "Transformation from HYBRID term:" << std::endl << std::get<1>(trans_hybrid_term_info) << std::endl;
     std::cout << "INFORM from HYBRID term:" << std::endl << std::get<2>(trans_hybrid_term_info) << std::endl;
+
+    if(std::get<0>(trans_hybrid_term_info))
+    {
+        //print Using RGB-D Odometry
+        std::cout <<"Using RGB-D Hybrid_term " <<std::endl;
+        std::cout <<"Transformation: " <<std::get<1>(trans_hybrid_term_info)<< std::endl;
+        //create point cloud from rgbd_image
+        auto source_pcd_hybrid_term = open3d::geometry::PointCloud::CreateFromRGBDImage(*source_rgbd, pinhole_camera_intrinsic);
+        source_pcd_hybrid_term->Transform(std::get<1>(trans_hybrid_term_info));
+        //draw pcl
+        Eigen::Vector3d lookat;
+        lookat << 0.0345, -0.0937, 1.8033;
+        Eigen::Vector3d up;
+        up << -0.0067, -0.9838, 0.1790;
+        Eigen::Vector3d front;
+        front << 0.0999, -0.1787, -0.9788;
+        //colorize the pcl
+        target_point_cloud->PaintUniformColor(Eigen::Vector3d(1.0, 0.506, 0.0));
+
+        //source_pcd_hybrid_term->PaintUniformColor(Eigen::Vector3d(0.0, 1.0, 0.706));
+
+        open3d::visualization::DrawGeometries({target_point_cloud, source_pcd_hybrid_term},
+                                              "Point Cloud", 640, 480, 50, 50, false, false, false,
+                                              &lookat, &up, &front);
+    }
+    else
+    {
+        std::cout <<"Using RGB-D Hybrid_term failed" <<std::endl;
+    }
+
+
+    // This code block calls two different RGBD odometry methods. The first one is from [Steinbrucker2011].
+    // It minimizes photo consistency of aligned images. The second one is from [Park2017].
+    // In addition to photo consistency, it implements constraint for geometry. Both functions run in similar speed,
+    // but [Park2017] is more accurate in our test on benchmark datasets and is thus the recommended method.
+    // Park, Q.-Y. Zhou, and V. Koltun, Colored Point Cloud Registration Revisited, ICCV, 2017.
+    // Steinbrucker, J. Sturm, and D. Cremers, Real-time visual odometry from dense RGB-D images, In ICCV Workshops, 2011.
+
 
 
 

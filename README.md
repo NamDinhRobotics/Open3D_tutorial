@@ -7,3 +7,5 @@ providing by Open3D tutorial in Python
 + Transformation
 + RGB-D image
 + RGB-D odometry
+  ![Screenshot](./RGBD_odom.png)
+
