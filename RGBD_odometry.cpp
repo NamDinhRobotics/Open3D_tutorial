@@ -6,7 +6,7 @@
 #include <open3d/Open3D.h>
 
 int main() {
-    //camera intrinsic path
+    //camera intrinsic path, change the path following the open3d source code
     std::string camera_intrinsic_path = "/home/dinhnambkhn/Open3D/examples/test_data/camera_primesense.json";
     //read_pinhole_camera_intrinsic
     open3d::camera::PinholeCameraIntrinsic pinhole_camera_intrinsic;
@@ -14,9 +14,9 @@ int main() {
     //check the intrinsic parameters
     std::cout << "Intrinsic: " << pinhole_camera_intrinsic.intrinsic_matrix_ << std::endl;
 
-    //read source color image path
+    //read source color image path, change the path following the open3d source code
     std::string source_color_image_path = "/home/dinhnambkhn/Open3D/examples/test_data/RGBD/color/00000.jpg";
-    //read source depth image path
+    //read source depth image path, change the path following the open3d source code
     std::string source_depth_image_path = "/home/dinhnambkhn/Open3D/examples/test_data/RGBD/depth/00000.png";
     //read image from path
     open3d::geometry::Image color_image, depth_image;
@@ -29,9 +29,9 @@ int main() {
     //create rgbd image from color and depth image
     auto source_rgbd = open3d::geometry::RGBDImage::CreateFromColorAndDepth(color_image, depth_image);
 
-    //read target color image path
+    //read target color image path, change the path following the open3d source code
     std::string target_color_image_path = "/home/dinhnambkhn/Open3D/examples/test_data/RGBD/color/00001.jpg";
-    //read target depth image path
+    //read target depth image path, change the path following the open3d source code
     std::string target_depth_image_path = "/home/dinhnambkhn/Open3D/examples/test_data/RGBD/depth/00001.png";
     //read image from path
     open3d::geometry::Image target_color_image, target_depth_image;
@@ -111,7 +111,6 @@ int main() {
                                                                                    odom_init,
                                                                                    open3d::pipelines::odometry::RGBDOdometryJacobianFromColorTerm(),
                                                                                    option);
-
     //stop time counting
     auto stop1 = std::chrono::system_clock::now();
     //print time
