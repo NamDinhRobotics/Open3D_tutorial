@@ -1,5 +1,5 @@
 ## This is the Open3D tutorials in C++
-providing by Open3D tutorial in Python
+Following by the Open3D tutorial in Python
 > http://www.open3d.org/docs/latest/tutorial
 + How to config cmake with open3D
 + PCL with open3D
