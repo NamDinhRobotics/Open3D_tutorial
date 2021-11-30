@@ -1,6 +1,10 @@
-## This is the Open3D tutorials in C++
-Following by the Open3D tutorial in Python
-> http://www.open3d.org/docs/latest/tutorial
+## The Open3D tutorials in C++
+I wrote this tutorial to help you get started with Open3D using C++.
+
+The original tutorial is [here](http://www.open3d.org/docs/latest/tutorial).
+That was writen in Python.
+
+The topics are:
 + How to config cmake with open3D
 + PCL with open3D
 + Image
@@ -12,4 +16,7 @@ Following by the Open3D tutorial in Python
 
 + KDTree 
  ![Screenshot](./kdtree.png)
+
++ ICP registration
+ ![Screenshot](./icp.png)
 
