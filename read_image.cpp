@@ -8,12 +8,12 @@
 #include <opencv2/core.hpp>
 
 
-int main(){
+int main() {
     //read image file
     open3d::geometry::Image image;
     open3d::io::ReadImage("lena_color.jpg", image);
     //check image is empty or not
-    if(image.IsEmpty()){
+    if (image.IsEmpty()) {
         std::cout << "Image is empty" << std::endl;
     } else {
         std::cout << "Image is not empty" << std::endl;

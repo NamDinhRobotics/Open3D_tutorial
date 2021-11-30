@@ -4,7 +4,7 @@
 #include <iostream>
 #include <open3d/Open3D.h>
 
-int main(){
+int main() {
     //read color image
     std::string color_path = "/home/dinhnambkhn/Open3D/examples/test_data/RGBD/color/00000.jpg";
     std::string depth_path = "/home/dinhnambkhn/Open3D/examples/test_data/RGBD/depth/00000.png";
@@ -16,7 +16,7 @@ int main(){
     open3d::io::ReadImage(depth_path, depth_image);
 
     //check image empty or not
-    if(color_image.IsEmpty() || depth_image.IsEmpty()){
+    if (color_image.IsEmpty() || depth_image.IsEmpty()) {
         std::cout << "Image is empty" << std::endl;
         return -1;
     } else
@@ -26,7 +26,7 @@ int main(){
     //create rgbd image from color and depth image
     auto rgbd_img = open3d::geometry::RGBDImage::CreateFromColorAndDepth(color_image, depth_image);
     //check rgbd image empty or not
-    if(rgbd_img->IsEmpty()){
+    if (rgbd_img->IsEmpty()) {
         std::cout << "RGBD image is empty" << std::endl;
         return -1;
     } else
@@ -37,9 +37,11 @@ int main(){
     //draw rgbd image
     open3d::visualization::DrawGeometries({rgbd_img});
     // create point cloud from rgbd image with default parameters
-    auto point_cloud=open3d::geometry::PointCloud::CreateFromRGBDImage(*rgbd_img,open3d::camera::PinholeCameraIntrinsic(open3d::camera::PinholeCameraIntrinsicParameters::PrimeSenseDefault));
+    auto point_cloud = open3d::geometry::PointCloud::CreateFromRGBDImage(*rgbd_img,
+                                                                         open3d::camera::PinholeCameraIntrinsic(
+                                                                                 open3d::camera::PinholeCameraIntrinsicParameters::PrimeSenseDefault));
     //check point cloud empty or not
-    if(point_cloud->IsEmpty()){
+    if (point_cloud->IsEmpty()) {
         std::cout << "Point cloud is empty" << std::endl;
         return -1;
     } else
@@ -51,9 +53,9 @@ int main(){
     Eigen::Matrix4d transformation_matrix;
     //set transformation matrix
     transformation_matrix << 1, 0, 0, 0
-                           , 0, -1, 0, 0
-                           , 0, 0, -1, 0
-                           , 0, 0, 0, 1;
+            , 0, -1, 0, 0
+            , 0, 0, -1, 0
+            , 0, 0, 0, 1;
 
     point_cloud->Transform(transformation_matrix);
 
@@ -74,7 +76,7 @@ int main(){
     //create rgbd image from color and depth image
     auto rgbd_img2 = open3d::geometry::RGBDImage::CreateFromSUNFormat(color_image2, depth_image2);
     //check rgbd image empty or not
-    if(rgbd_img2->IsEmpty()){
+    if (rgbd_img2->IsEmpty()) {
         std::cout << "RGBD SUN image is empty" << std::endl;
         return -1;
     } else
@@ -84,9 +86,11 @@ int main(){
     open3d::visualization::DrawGeometries({rgbd_img2});
 
     //create point cloud from rgbd image with default parameters
-    auto point_cloud2=open3d::geometry::PointCloud::CreateFromRGBDImage(*rgbd_img2,open3d::camera::PinholeCameraIntrinsic(open3d::camera::PinholeCameraIntrinsicParameters::PrimeSenseDefault));
+    auto point_cloud2 = open3d::geometry::PointCloud::CreateFromRGBDImage(*rgbd_img2,
+                                                                          open3d::camera::PinholeCameraIntrinsic(
+                                                                                  open3d::camera::PinholeCameraIntrinsicParameters::PrimeSenseDefault));
     //check point cloud empty or not
-    if(point_cloud2->IsEmpty()){
+    if (point_cloud2->IsEmpty()) {
         std::cout << "Point cloud SUN is empty" << std::endl;
         return -1;
     } else

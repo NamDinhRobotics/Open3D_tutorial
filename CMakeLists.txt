@@ -9,9 +9,9 @@ find_package(Open3D HINTS /home/dinhnambkhn/open3d_install/lib/cmake)
 find_package(OpenCV)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
-if(NOT Open3D_FOUND)
+if (NOT Open3D_FOUND)
     message(FATAL_ERROR "Open3D not found, please use -DCMAKE_INSTALL_PREFIX=open3d_install_dir")
-endif()
+endif ()
 
 add_executable(testPCL test_PCL.cpp)
 target_link_libraries(testPCL Open3D::Open3D)

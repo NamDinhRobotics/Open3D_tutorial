@@ -8,13 +8,13 @@
 #include <open3d/Open3D.h>
 #include <memory>
 
-int main(){
+int main() {
     //print let's define some primitives
     std::cout << "Let's define some primitives" << std::endl;
     //create a TriangleMesh create a box
-    auto mesh_box = open3d::geometry::TriangleMesh::CreateBox(1.0,1.0,1.0);
+    auto mesh_box = open3d::geometry::TriangleMesh::CreateBox(1.0, 1.0, 1.0);
     //create a weak pointer to mesh_box
-    const std::shared_ptr<open3d::geometry::TriangleMesh>& mesh_box_ptr = mesh_box;
+    const std::shared_ptr<open3d::geometry::TriangleMesh> &mesh_box_ptr = mesh_box;
 
     mesh_box->ComputeVertexNormals();
     mesh_box->PaintUniformColor(Eigen::Vector3d(0.9, 0.1, 0.1));
@@ -44,7 +44,8 @@ int main(){
     auto box_total = mesh_box->operator+(*mesh_sphere).operator+(*mesh_cylinder).operator+(*mesh_frame);
 
     //need to create make_shared to avoid memory leak
-    std::shared_ptr<open3d::geometry::TriangleMesh> box_total_ptr = std::make_shared<open3d::geometry::TriangleMesh>(box_total);
+    std::shared_ptr<open3d::geometry::TriangleMesh> box_total_ptr = std::make_shared<open3d::geometry::TriangleMesh>(
+            box_total);
     open3d::visualization::DrawGeometries({box_total_ptr});
 
     //let draw a line set
@@ -101,9 +102,9 @@ int main(){
     //auto *zoom = &zoomv;
     // create *zoom=0.8
 
-    open3d::visualization::DrawGeometries({line_set_ptr}, "LineSet",640, 480, 50, 50, false, false, false, nullptr,
+    open3d::visualization::DrawGeometries({line_set_ptr}, "LineSet", 640, 480, 50, 50, false, false, false, nullptr,
                                           nullptr, nullptr, &zoom);
-                                          //default
+    //default
 
     return 0;
 }

@@ -124,7 +124,8 @@ int main() {
     start = std::chrono::system_clock::now();
     reg_p2p = open3d::pipelines::registration::RegistrationICP(source, target, threshold, trans_init,
                                                                open3d::pipelines::registration::TransformationEstimationPointToPoint(),
-                                                               open3d::pipelines::registration::ICPConvergenceCriteria(1e-6,1e-6, 1000));
+                                                               open3d::pipelines::registration::ICPConvergenceCriteria(
+                                                                       1e-6, 1e-6, 1000));
 
     stop = std::chrono::system_clock::now();
     //print time
@@ -149,7 +150,7 @@ int main() {
     //begin counting time
     start = std::chrono::system_clock::now();
     auto reg_p2l = open3d::pipelines::registration::RegistrationICP(source, target, threshold, trans_init,
-                                                               open3d::pipelines::registration::TransformationEstimationPointToPlane());
+                                                                    open3d::pipelines::registration::TransformationEstimationPointToPlane());
     stop = std::chrono::system_clock::now();
     //print time
     std::cout << "PointToPlane time for Transformation from color ms: " <<

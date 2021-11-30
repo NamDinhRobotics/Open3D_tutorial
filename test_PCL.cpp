@@ -4,7 +4,7 @@
 #include <iostream>
 #include <open3d/Open3D.h>
 
-int main(){
+int main() {
 
     //point cloud path
     std::string path = "/home/dinhnambkhn/Open3D/examples/test_data/fragment.ply";
@@ -22,8 +22,8 @@ int main(){
     //rotate point cloud
     Eigen::Matrix3d rotation_matrix;
     rotation_matrix << 1.0, 0.0, 0.0,
-                        0, -1, 0,
-                        0, 0, -1;
+            0, -1, 0,
+            0, 0, -1;
 
     pcd_ptr->Rotate(rotation_matrix, Eigen::Vector3d(0, 0, 1));
 

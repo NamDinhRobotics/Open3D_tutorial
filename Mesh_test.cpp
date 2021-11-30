@@ -5,7 +5,7 @@
 
 #include "open3d/Open3D.h"
 
-int main(){
+int main() {
     //create a shape mesh
     auto mesh = open3d::geometry::TriangleMesh::CreateSphere(1.0, 32, 32);
     mesh->ComputeVertexNormals();

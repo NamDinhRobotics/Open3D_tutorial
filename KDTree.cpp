@@ -5,7 +5,7 @@
 #include <iostream>
 #include <open3d/Open3D.h>
 
-int main(){
+int main() {
 
     //Testing kdtree in Open3D
     std::cout << "Testing kdtree in Open3D" << std::endl;
@@ -15,9 +15,9 @@ int main(){
     open3d::geometry::PointCloud cloud;
     open3d::io::ReadPointCloud("/home/dinhnambkhn/Open3D/examples/test_data/Feature/cloud_bin_0.pcd", cloud);
     //check cloud is empty or not
-    if(cloud.points_.empty()){
+    if (cloud.points_.empty()) {
         std::cout << "Point cloud is empty" << std::endl;
-    }else
+    } else
         std::cout << "Point cloud is not empty" << std::endl;
 
     //make shared point cloud
@@ -43,7 +43,7 @@ int main(){
     std::vector<double> distance2;
 
     pcd_tree.SearchKNN(cloud_ptr->points_[red_idx], 200, indices, distance2);
-    for(int idx : indices){
+    for (int idx: indices) {
         cloud_ptr->colors_[idx] = Eigen::Vector3d(0, 0, 1);
     }
     //Using search_radius_vector_3d
@@ -59,7 +59,7 @@ int main(){
     std::cout << "Number of neighbors: " << indicesR.size() << std::endl;
 
     //paint them green.
-    for(int idx : indicesR){
+    for (int idx: indicesR) {
         cloud_ptr->colors_[idx] = Eigen::Vector3d(0, 1, 0);
     }
 
@@ -71,9 +71,9 @@ int main(){
     //now, let visualize the point cloud
     //draw line_set
     double zoom = 0.5599;
-    auto lookat = Eigen::Vector3d (2.1126, 1.0163, -1.8543);
-    auto front = Eigen::Vector3d (-0.4958, 0.8229, 0.2773);
-    auto up = Eigen::Vector3d (0.1007, -0.2626, 0.9596);
+    auto lookat = Eigen::Vector3d(2.1126, 1.0163, -1.8543);
+    auto front = Eigen::Vector3d(-0.4958, 0.8229, 0.2773);
+    auto up = Eigen::Vector3d(0.1007, -0.2626, 0.9596);
 
     open3d::visualization::DrawGeometries({cloud_ptr}, "LineSet",
                                           640, 480, 50, 50,
