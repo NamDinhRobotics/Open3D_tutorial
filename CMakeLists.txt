@@ -30,3 +30,6 @@ target_link_libraries(rgbd_image Open3D::Open3D ${OpenCV_LIBRARIES})
 
 add_executable(rgbd_odometry RGBD_odometry.cpp)
 target_link_libraries(rgbd_odometry Open3D::Open3D ${OpenCV_LIBRARIES})
+
+add_executable(Geometry_primitives Geometry_primitives.cpp)
+target_link_libraries(Geometry_primitives Open3D::Open3D ${OpenCV_LIBRARIES})
