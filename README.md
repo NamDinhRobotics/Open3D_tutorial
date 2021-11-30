@@ -10,9 +10,13 @@ The topics are:
 + Image
 + Transformation
 + RGB-D image
+  ![Screenshot](./rgbd_img.png)
+
 + RGB-D odometry
   ![Screenshot](./RGBD_odom.png)
+
 + Geometry primitives
+  ![Screenshot](./geometry.png)
 
 + KDTree 
  ![Screenshot](./kdtree.png)
