@@ -11,17 +11,17 @@ The topics are covered in this tutorial:
 + Image
 + Transformation
 + RGB-D image
-  ![Screenshot](./rgbd_img.png)
+  ![Screenshot](./images/rgbd_img.png)
 
 + RGB-D odometry
-  ![Screenshot](./RGBD_odom.png)
+  ![Screenshot](./images/RGBD_odom.png)
 
 + Geometry primitives
-  ![Screenshot](./geometry.png)
+  ![Screenshot](./images/geometry.png)
 
 + KDTree
-  ![Screenshot](./kdtree.png)
+  ![Screenshot](./images/kdtree.png)
 
 + ICP registration
-  ![Screenshot](./icp.png)
+  ![Screenshot](./images/icp.png)
 
