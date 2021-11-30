@@ -36,3 +36,6 @@ target_link_libraries(Geometry_primitives Open3D::Open3D ${OpenCV_LIBRARIES})
 
 add_executable(KDTree KDTree.cpp)
 target_link_libraries(KDTree Open3D::Open3D ${OpenCV_LIBRARIES})
+
+add_executable(ICP_Registration ICP_Registration.cpp)
+target_link_libraries(ICP_Registration Open3D::Open3D ${OpenCV_LIBRARIES})

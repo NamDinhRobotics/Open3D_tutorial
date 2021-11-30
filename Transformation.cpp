@@ -5,7 +5,7 @@
 #include <open3d/Open3D.h>
 #include <opencv2/opencv.hpp>
 
-int main(){
+int main() {
     //create a coordinate frame
     auto mesh = open3d::geometry::TriangleMesh::CreateCoordinateFrame();
 
@@ -24,14 +24,14 @@ int main(){
     //set identity matrix
     transformation.setIdentity();
     //rotate around x axis
-    transformation(0,0) = 1;
-    transformation(1,1) = cos(M_PI/4);
-    transformation(1,2) = -sin(M_PI/4);
-    transformation(2,1) = sin(M_PI/4);
-    transformation(2,2) = cos(M_PI/4);
+    transformation(0, 0) = 1;
+    transformation(1, 1) = cos(M_PI / 4);
+    transformation(1, 2) = -sin(M_PI / 4);
+    transformation(2, 1) = sin(M_PI / 4);
+    transformation(2, 2) = cos(M_PI / 4);
     //translate
-    transformation(0,3) = 1.3;
-    transformation(1,3) = 1.3;
+    transformation(0, 3) = 1.3;
+    transformation(1, 3) = 1.3;
     //apply transformation
     auto mesh_tx = mesh->Transform(transformation);
     //create pointer to mesh
