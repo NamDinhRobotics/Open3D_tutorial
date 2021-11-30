@@ -84,5 +84,17 @@ int main(){
                                           &zoom);
 
 
+    /*
+    Besides, the KNN search search_knn_vector_3d and the RNN search search_radius_vector_3d,
+    Open3D provides a hybrid search function search_hybrid_vector_3d.
+    It returns at most k nearest neighbors that have distances to the anchor point less than a given radius.
+    This function combines the criteria of KNN search and RNN search. It is known as RKNN search in some literatures.
+    It has performance benefits in many practical cases, and is heavily used in a number of Open3D functions.
+    -------------------CODE --------------------
+    std::vector<int> indicesH;
+    std::vector<double> distanceH;
+    pcd_tree.SearchHybrid(cloud_ptr->points_[red_idx], 0.2, 500, indicesH, distanceH);
+    */
+
     return 0;
 }
