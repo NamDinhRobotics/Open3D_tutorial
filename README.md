@@ -31,8 +31,8 @@ cd ../..
 Note: `-DBUILD_SHARED_LIBS=ON` is recommended if `-DBUILD_CUDA_MODULE=ON`.
 
 ## If error:
-+ please install dependencies
-# Only needed for Ubuntu
++ please install dependencies: 
+
 util/install_deps_ubuntu.sh
 
 + and add to .bashrc file as,
