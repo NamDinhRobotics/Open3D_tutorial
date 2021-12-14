@@ -29,6 +29,15 @@ cmake --build . --config Release --parallel 12 --target install
 cd ../..
 ```
 Note: `-DBUILD_SHARED_LIBS=ON` is recommended if `-DBUILD_CUDA_MODULE=ON`.
+If error:
+please install dependencies
+# Only needed for Ubuntu
+util/install_deps_ubuntu.sh
+
+and add to .bashrc file as,
+export CUDA_HOME=/usr/local/cuda
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64
+export PATH=$PATH:$CUDA_HOME/bin
 
 In my case, I downloaded the source code to 
 >/home/dinhnambkhn/Open3D
