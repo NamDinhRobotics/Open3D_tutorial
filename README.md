@@ -30,7 +30,7 @@ cd ../..
 ```
 Note: `-DBUILD_SHARED_LIBS=ON` is recommended if `-DBUILD_CUDA_MODULE=ON`.
 
-If error:
+## If error:
 + please install dependencies
 # Only needed for Ubuntu
 util/install_deps_ubuntu.sh
