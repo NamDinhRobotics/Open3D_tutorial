@@ -23,7 +23,7 @@ int main() {
     Eigen::Matrix4d transformation;
     //set identity matrix
     transformation.setIdentity();
-    //rotate around x axis
+    //rotate around x-axis
     transformation(0, 0) = 1;
     transformation(1, 1) = cos(M_PI / 4);
     transformation(1, 2) = -sin(M_PI / 4);

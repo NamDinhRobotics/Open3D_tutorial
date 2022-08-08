@@ -52,9 +52,9 @@ int main() {
     auto option = open3d::pipelines::odometry::OdometryOption();
     auto odom_init = Eigen::Matrix4d::Identity();
     //print option
-    std::cout << "max_depth_: " << option.max_depth_ << std::endl;
-    std::cout << "min_depth_: " << option.min_depth_ << std::endl;
-    std::cout << "max_depth_diff_: " << option.max_depth_diff_ << std::endl;
+    std::cout << "max_depth_: " << option.depth_max_ << std::endl;
+    std::cout << "min_depth_: " << option.depth_min_ << std::endl;
+    std::cout << "max_depth_diff_: " << option.depth_diff_max_ << std::endl;
 
     //begin counting time
     auto start = std::chrono::system_clock::now();

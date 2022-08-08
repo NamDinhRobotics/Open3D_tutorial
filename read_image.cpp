@@ -11,7 +11,7 @@
 int main() {
     //read image file
     open3d::geometry::Image image;
-    open3d::io::ReadImage("lena_color.jpg", image);
+    open3d::io::ReadImage("/home/dinhnambkhn/Open3D/examples/test_data/lena_color.jpg", image);
     //check image is empty or not
     if (image.IsEmpty()) {
         std::cout << "Image is empty" << std::endl;
@@ -21,17 +21,6 @@ int main() {
 
     //create a share d pointer of image
     std::shared_ptr<open3d::geometry::Image> image_ptr = std::make_shared<open3d::geometry::Image>(image);
-    //read image file opencv
-    cv::Mat image_cv;
-    image_cv = cv::imread("lena_color.jpg");
-    //convert to gray scale
-    cv::Mat image_gray;
-    cv::cvtColor(image_cv, image_gray, cv::COLOR_BGR2GRAY);
-    //show color image and gray image
-    cv::imshow("color image", image_cv);
-    cv::imshow("gray image", image_gray);
-    cv::waitKey(0);
-
     //draw the image_ptr
     open3d::visualization::DrawGeometries({image_ptr});
 
