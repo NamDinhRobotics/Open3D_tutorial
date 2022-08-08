@@ -50,6 +50,9 @@ After install on my Ubuntu 18.04, I got the HOME folder is:
 
 
 ## Step 2: The topics are covered in this tutorial:
+copy the test_data folder to the Open3D folder
+
+```bash
 + How to config cmake with open3D
 + PCL with open3D
 + Image
